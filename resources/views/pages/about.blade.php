@@ -4,6 +4,6 @@
     <title>About</title>
 </head>
 <body>
-<h1>About Me</h1>
+<h1>About Me: {{ $firstName }} {{ $lastName }}</h1>
 </body>
 </html>

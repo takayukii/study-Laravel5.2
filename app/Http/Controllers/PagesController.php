@@ -12,9 +12,11 @@ class PagesController extends Controller
     {
         return view('contact');
     }
-    
+
     public function about()
     {
-        return view('pages.about');
+        $firstName = 'Luke';
+        $lastName = 'Skywalker';
+        return view('pages.about', compact('firstName', 'lastName'));
     }
 }
