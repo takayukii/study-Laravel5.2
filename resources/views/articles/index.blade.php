@@ -5,7 +5,9 @@
 
     <hr/>
 
-    {!! link_to('articles/create', '新規作成', ['class' => 'btn btn-primary']) !!}
+    @if (Auth::check())
+        {!! link_to('articles/create', '新規作成', ['class' => 'btn btn-primary']) !!}
+    @endif
 
     @foreach($articles as $article)
         <article>

@@ -9,12 +9,14 @@
         <div class="body">{{ $article->body }}</div>
     </article>
 
-    <hr/>
+    @if (Auth::check())
+        <hr/>
 
-    {!! link_to_route('articles.edit', '編集', [$article->id], ['class' => 'btn btn-primary']) !!}
+        {!! link_to_route('articles.edit', '編集', [$article->id], ['class' => 'btn btn-primary']) !!}
 
-    <br/>
-    <br/>
+        <br/>
+        <br/>
 
-    {!! delete_form(['articles.destroy', $article->id]) !!}
+        {!! delete_form(['articles.destroy', $article->id]) !!}
+    @endif
 @endsection
