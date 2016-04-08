@@ -19,3 +19,4 @@ Route::get('/', 'ArticlesController@index');
 
 Route::resource('articles', 'ArticlesController');
 
+Route::controller('hoge', 'HogeController');
