@@ -26,10 +26,16 @@ class ArticlesController extends Controller
         return view('articles.show', compact('article'));
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        $inputs = \Request::all();
-        Article::create($inputs);
+        $rules = [
+            'title' => 'required|min:3',
+            'body' => 'required',
+            'published_at' => 'required|date',
+        ];
+        $this->validate($request, $rules);
+
+        Article::create($request->all());
         return redirect('articles');
     }
 }
