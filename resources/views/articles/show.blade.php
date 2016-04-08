@@ -11,10 +11,10 @@
 
     <hr/>
 
-    {!! link_to(action('ArticlesController@edit', [$article->id]), '編集', ['class' => 'btn btn-primary']) !!}
+    {!! link_to_route('articles.edit', '編集', [$article->id], ['class' => 'btn btn-primary']) !!}
 
     <br/>
     <br/>
 
-    {!! delete_form(['articles', $article->id]) !!}
+    {!! delete_form(['articles.destroy', $article->id]) !!}
 @endsection
