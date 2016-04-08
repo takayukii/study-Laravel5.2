@@ -15,5 +15,7 @@ Route::get('/', ['as' => 'index', 'uses' => 'WelcomeController@index']);
 Route::get('contact', ['as' => 'contact', 'uses' => 'PagesController@contact']);
 Route::get('about', ['as' => 'about', 'uses' => 'PagesController@about']);
 
+Route::get('/', 'ArticlesController@index');
+
 Route::resource('articles', 'ArticlesController');
 
