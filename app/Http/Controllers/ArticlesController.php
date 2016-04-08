@@ -6,12 +6,14 @@ use App\Article;
 use App\Http\Requests\ArticleRequest;
 
 use App\Http\Requests;
+use Carbon\Carbon;
 
 class ArticlesController extends Controller
 {
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::latest('published_at')->where('published_at', '<=', Carbon::now())->published()->get();
+
         return view('articles.index', compact('articles'));
     }
 
