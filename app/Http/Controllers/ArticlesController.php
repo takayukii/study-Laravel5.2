@@ -27,9 +27,8 @@ class ArticlesController extends Controller
         return view('articles.create');
     }
 
-    public function show($id)
+    public function show(Article $article)
     {
-        $article = Article::findOrFail($id);
         return view('articles.show', compact('article'));
     }
 
@@ -41,30 +40,22 @@ class ArticlesController extends Controller
         return redirect()->route('articles.index');
     }
 
-    public function edit($id)
+    public function edit(Article $article)
     {
-        $article = Article::findOrFail($id);
-
         return view('articles.edit', compact('article'));
     }
 
-    public function update($id, ArticleRequest $request)
+    public function update(Article $article, ArticleRequest $request)
     {
-        $article = Article::findOrFail($id);
-
         $article->update($request->all());
-
         \Session::flash('flash_message', '記事を更新しました');
 
         return redirect()->route('articles.show', [$article->id]);
     }
 
-    public function destroy($id)
+    public function destroy(Article $article)
     {
-        $article = Article::findOrFail($id);
-
         $article->delete();
-
         \Session::flash('flash_message', '記事を削除しました');
 
         return redirect()->route('articles.index');
