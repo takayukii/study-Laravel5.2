@@ -20,6 +20,11 @@ class Article extends Model
         return $this->belongsToMany('App\Tag')->withTimestamps();
     }
 
+    public function getTagListAttribute()
+    {
+        return $this->tags->lists('id')->all();
+    }
+
     public function scopePublished($query)
     {
         $query->where('published_at', '<=', Carbon::now());

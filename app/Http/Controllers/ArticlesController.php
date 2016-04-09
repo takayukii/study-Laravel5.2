@@ -6,6 +6,7 @@ use App\Article;
 use App\Http\Requests\ArticleRequest;
 
 use App\Http\Requests;
+use App\Tag;
 use Carbon\Carbon;
 
 class ArticlesController extends Controller
@@ -24,7 +25,8 @@ class ArticlesController extends Controller
 
     public function create()
     {
-        return view('articles.create');
+        $tags = Tag::lists('name', 'id');
+        return view('articles.create', compact('tags'));
     }
 
     public function show(Article $article)
@@ -34,7 +36,9 @@ class ArticlesController extends Controller
 
     public function store(ArticleRequest $request)
     {
-        \Auth::user()->articles()->create($request->all());
+        $article = \Auth::user()->articles()->create($request->all());
+        $article->tags()->attach($request->input('tag_list'));
+
         \Session::flash('flash_message', '記事を作成しました');
 
         return redirect()->route('articles.index');
@@ -42,12 +46,14 @@ class ArticlesController extends Controller
 
     public function edit(Article $article)
     {
-        return view('articles.edit', compact('article'));
+        $tags = Tag::lists('name', 'id');
+        return view('articles.edit', compact('article', 'tags'));
     }
 
     public function update(Article $article, ArticleRequest $request)
     {
         $article->update($request->all());
+        $article->tags()->sync($request->input('tag_list', []));
         \Session::flash('flash_message', '記事を更新しました');
 
         return redirect()->route('articles.show', [$article->id]);
