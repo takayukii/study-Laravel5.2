@@ -158,7 +158,9 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
 
+        // TODO: 開発用のサービスプロバイダでまとめて登録する
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 
@@ -208,6 +210,8 @@ return [
 
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+
+//        'Debugbar' => Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 
