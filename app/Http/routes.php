@@ -22,3 +22,14 @@ Route::resource('articles', 'ArticlesController');
 //Route::controller('hoge', 'HogeController');
 
 Route::auth();
+
+Route::get('fire', function () {
+    // this fires the event
+    event(new App\Events\TestEvent());
+    return "event fired";
+});
+
+Route::get('test', function () {
+    // this checks for the event
+    return view('broadcast.test');
+});
