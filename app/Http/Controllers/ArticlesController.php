@@ -20,6 +20,7 @@ class ArticlesController extends Controller
     {
         $articles = Article::latest('published_at')->where('published_at', '<=', Carbon::now())->published()->get();
 
+//        return response()->json($articles, 200);
         return view('articles.index', compact('articles'));
     }
 
