@@ -21,6 +21,6 @@ class TestEvent extends Event implements ShouldBroadcast
 
     public function broadcastOn()
     {
-        return ['test-channel'];
+        return ['yourAction', 'test-channel'];
     }
 }
